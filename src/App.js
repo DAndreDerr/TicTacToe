@@ -14,6 +14,30 @@ function Square({ value, onSquareClick }) {
   );
 }
 
+
+// Function to calculate the winner
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  // Check if any of the winning combinations exist in the squares array
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a]; // Return the winner (X or O)
+    }
+  }
+  return null; // Return null if there is no winner
+}
+
+
 // Component for rendering the Tic Tac Toe board
 // this component receives three props:
   // 'xIsNext'- a boolean indicating whose turn it is
@@ -116,24 +140,4 @@ export default function Game() {
   );
 }
 
-// Function to calculate the winner
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  // Check if any of the winning combinations exist in the squares array
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a]; // Return the winner (X or O)
-    }
-  }
-  return null; // Return null if there is no winner
-}
+
